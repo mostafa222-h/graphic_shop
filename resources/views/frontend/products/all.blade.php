@@ -1,4 +1,4 @@
-@extends(layouts.frontend.master)
+@extends('layouts.frontend.master')
 
 @section('content')
 
@@ -753,3 +753,5 @@
     </div>
 
 @endsection
+
+

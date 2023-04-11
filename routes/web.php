@@ -19,12 +19,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/user',[UserController::class,'index']);
+//Route::get('/user',[UserController::class,'index']);
 
-Route::get('create/category', function () {
-   $created_category =  Category::find(1)->update([
-    'title' => 'titlethree',
-    'slug' => 'title-three'
-   ]);
-    dd($created_category);
+Route::get('products/all', function () {
+    return view('frontend.products.all');
 });

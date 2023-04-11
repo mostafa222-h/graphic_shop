@@ -1,5 +1,13 @@
 @extends('layouts.frontend.header')
 
-@yeild('content')
+@yield('content')
 
 @extends('layouts.frontend.footer')
+
+
+
+
+
+
+
+
