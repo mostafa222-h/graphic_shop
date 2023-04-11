@@ -24,3 +24,11 @@ Route::get('/', function () {
 Route::get('products/all', function () {
     return view('frontend.products.all');
 });
+
+Route::get('admin_panel', function () {
+    return view('admin.index');
+});
+
+Route::get('admin_users', function () {
+    return view('admin.users.index');
+});
