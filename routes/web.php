@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Models\Category;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,3 +20,11 @@ Route::get('/', function () {
 });
 
 Route::get('/user',[UserController::class,'index']);
+
+Route::get('create/category', function () {
+   $created_category =  Category::find(1)->update([
+    'title' => 'titlethree',
+    'slug' => 'title-three'
+   ]);
+    dd($created_category);
+});
