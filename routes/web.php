@@ -30,5 +30,8 @@ Route::get('admin_panel', function () {
 });
 
 Route::get('admin_users', function () {
+    
+    
     return view('admin.users.index');
+    
 });
