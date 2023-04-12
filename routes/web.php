@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Models\Category;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,4 +19,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/user',[UserController::class,'index']);
+//Route::get('/user',[UserController::class,'index']);
+
+Route::get('products/all', function () {
+    return view('frontend.products.all');
+});
+
+Route::get('admin_panel', function () {
+    return view('admin.index');
+});
+
+Route::get('admin_users', function () {
+    
+    
+    return view('admin.users.index');
+    
+});
