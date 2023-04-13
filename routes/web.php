@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\Admin\CategoriesController;
 use App\Models\Category;
 
 /*
@@ -21,17 +21,14 @@ Route::get('/', function () {
 
 //Route::get('/user',[UserController::class,'index']);
 
-Route::get('products/all', function () {
-    return view('frontend.products.all');
+//Route::get('/user',[UserController::class,'index']);
+
+Route::prefix('admin')->group(function(){
+    Route::prefix('categories')->group(function(){
+        Route::get('create',[CategoriesController::class,'create']);
+        //this address 'admin/categories'
+        Route::post('',[CategoriesController::class,'store'])->name('admin.categories.store');
+
+    });
 });
 
-Route::get('admin_panel', function () {
-    return view('admin.index');
-});
-
-Route::get('admin_users', function () {
-    
-    
-    return view('admin.users.index');
-    
-});
