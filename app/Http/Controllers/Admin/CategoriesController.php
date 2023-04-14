@@ -17,8 +17,12 @@ class CategoriesController extends Controller
     }
     public function store(StoreRequest $request)
     {
+        
         $validatedData = $request->validate();
+        //dd($validatedData);
         $createdCategory = Category::create([
+            // 'title' => $request->title  ,
+            // 'slug' => $request->slug
             'title' => $validatedData['title']  ,
             'slug' => $validatedData['slug']
         ]);
@@ -31,7 +35,7 @@ class CategoriesController extends Controller
     public function all()
     {
        
-        $categories = Category::all();
+        $categories = Category::paginate(10);
         //dd($categories);
         return view('admin.categories.all',compact('categories'));
     }
