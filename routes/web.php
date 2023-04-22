@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\Admin\CategoriesController;
 use App\Models\Category;
 
 /*
@@ -14,24 +14,18 @@ use App\Models\Category;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::prefix('admin')->group(function(){
+    Route::prefix('categories')->group(function(){
 
-Route::get('/', function () {
-    return view('welcome');
+
+        Route::get('',[CategoriesController::class,'all'])->name('admin.categories.all');
+        Route::get('create',[CategoriesController::class,'create'])->name('admin.categories.create');
+        Route::post('',[CategoriesController::class,'store'])->name('admin.categories.store');
+        Route::delete('{category_id}/delete',[CategoriesController::class,'delete'])->name('admin.categories.delete');
+        Route::get('{category_id}/edit',[CategoriesController::class,'edit'])->name('admin.categories.edit');
+        Route::put('{category_id}/update',[CategoriesController::class,'update'])->name('admin.categories.update');
+
+
+    });
 });
 
-//Route::get('/user',[UserController::class,'index']);
-
-Route::get('products/all', function () {
-    return view('frontend.products.all');
-});
-
-Route::get('admin_panel', function () {
-    return view('admin.index');
-});
-
-Route::get('admin_users', function () {
-    
-    
-    return view('admin.users.index');
-    
-});
