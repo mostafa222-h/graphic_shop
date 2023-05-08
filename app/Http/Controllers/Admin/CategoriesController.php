@@ -19,7 +19,7 @@ class CategoriesController extends Controller
     public function store(StoreRequest $request)
     {
         
-        $validatedData = $request->validate();
+        $validatedData = $request->validated();
         //dd($validatedData);
         $createdCategory = Category::create([
             // 'title' => $request->title  ,
