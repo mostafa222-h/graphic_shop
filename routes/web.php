@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CategoriesController;
+use App\Http\Controllers\Admin\ProductsController;
 use App\Models\Category;
 
 /*
@@ -14,6 +15,9 @@ use App\Models\Category;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+// Route::get('passcreate',function(){
+//     dd(bcrypt('12345678'));
+// });
 Route::prefix('admin')->group(function(){
     Route::prefix('categories')->group(function(){
 
@@ -27,5 +31,12 @@ Route::prefix('admin')->group(function(){
 
 
     });
-});
 
+    Route::prefix('products')->group(function(){
+
+        Route::get('create',[ProductsController::class,'create'])->name('admin.products.create');
+        Route::post('',[ProductsController::class,'store'])->name('admin.products.store');
+        
+
+    });
+});
