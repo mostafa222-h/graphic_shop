@@ -17,7 +17,7 @@ class ProductsController extends Controller
 {
     public function create()
     {
-        //dd("afwqe");
+       
         $categories = Category::all();
         return view('admin.products.add',compact('categories'));
     }
@@ -46,12 +46,14 @@ class ProductsController extends Controller
         $sourceImageFullPath = $basePath . 'source_url_' . $validatedData['source_url']->getClientOriginalName();
         ImageUploader::upload($validatedData['source_url'],$sourceImageFullPath,'local_storage');
 
-        $updatedProduct =  $createdProduct->update([
+        $updatedProduct =  Product::where('id',$createdProduct->id)->update([
             'thumbnail_url' => $imagesPath['thumbnail_url'] ,
             'demo_url' => $imagesPath['demo_url'] ,
             'source_url' => $sourceImageFullPath
 
         ]);
+
+        //dd($updatedProduct);
 
         if(!$updatedProduct)
         {
@@ -69,6 +71,25 @@ class ProductsController extends Controller
        
         
       
+    }
+
+    public function all()
+    {
+        $products = Product::paginate(10);
+        return view('admin.products.all',compact('products'));
+    }
+
+    public function downloadDemo($product_id)
+    {
+        $product = Product::findOrFail($product_id);
+
+        return response()->download(public_path($product->demo_url));
+    }
+    public function downloadSource($product_id)
+    {
+        $product = Product::findOrFail($product_id);
+
+        return response()->download(storage_path('app/local_storage/'.$product->source_url));
     }
 }
 
