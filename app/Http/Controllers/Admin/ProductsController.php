@@ -78,6 +78,41 @@ class ProductsController extends Controller
         $products = Product::paginate(10);
         return view('admin.products.all',compact('products'));
     }
+    public function delete($product_id)
+    {
+        $product = Product::findOrFail($product_id);
+        $product->delete();
+        return back()->with('success' , 'محصول حذف شد.');
+        
+    }
+
+    public function edit($product_id)
+    {
+        $product = Product::find($product_id);
+        return view('admin.categories.edit',compact('product'));
+       
+
+    }
+    // public function update(UpdateRequest $request , $category_id)
+    // {
+    //     $validatedData = $request->validated();
+    //     $category = Category::find($category_id);
+    //     $result = $category->update([
+    //         'title' => $validatedData['title'],
+    //         'slug' => $validatedData['slug']
+    //     ]);
+    //     if(!$result)
+    //     {
+    //         return back()->with('failed','به روز رسانی نشد');
+    //     }
+    //     return back()->with('success','به روز رسانی شد');
+    // }
+
+
+
+
+
+
 
     public function downloadDemo($product_id)
     {
