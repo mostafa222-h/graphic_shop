@@ -6,6 +6,11 @@ use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\OrdersController;
 use App\Http\Controllers\Admin\PaymentsController;
+use App\Http\Controllers\Home\HomeController;
+use App\Http\Controllers\Home\ProductsController as HomeProductsController;
+
+
+
 use App\Models\Category;
 
 /*
@@ -21,6 +26,15 @@ use App\Models\Category;
 // Route::get('passcreate',function(){
 //     dd(bcrypt('12345678'));
 // });
+
+Route::prefix('')->group(function (){
+    Route::get('',[HomeProductsController::class,'index'])->name('home.products.all');
+    Route::get('{product_id}/show',[HomeProductsController::class,'show'])->name('home.product.show');
+    // Route::prefix('products')->group(function(){
+    // });
+});
+
+
 Route::prefix('admin')->group(function(){
     Route::prefix('categories')->group(function(){
 
@@ -52,37 +66,22 @@ Route::prefix('admin')->group(function(){
     Route::prefix('users')->group(function(){
 
         Route::get('',[UsersController::class,'all'])->name('admin.users.all');
-
         Route::get('create',[UsersController::class,'create'])->name('admin.users.create');
-
         Route::post('',[UsersController::class,'store'])->name('admin.users.store');
-
         Route::get('{user_id}/edit',[UsersController::class,'edit'])->name('admin.users.edit');
-
         Route::put('{user_id}/update',[UsersController::class,'update'])->name('admin.users.update');
-
-
         Route::delete('{user_id}/delete',[UsersController::class,'delete'])->name('admin.users.delete');
-        
-       
     });
 
 
     Route::prefix('orders')->group(function(){
 
         Route::get('',[OrdersController::class,'all'])->name('admin.orders.all');
-
-      
-        
-       
     });
 
     Route::prefix('payments')->group(function(){
 
         Route::get('',[PaymentsController::class,'all'])->name('admin.payments.all');
-
-      
-        
        
     });
 
