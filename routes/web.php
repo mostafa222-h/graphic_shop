@@ -10,16 +10,7 @@ use App\Http\Controllers\Home\BasketController;
 use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\Home\ProductsController as HomeProductsController;
 use App\Http\Controllers\Home\CheckoutController;
-
-
-
-
-
-
-
-
-
-
+use App\Http\Controllers\PaymentController;
 use App\Models\Category;
 
 /*
@@ -99,4 +90,10 @@ Route::prefix('admin')->group(function(){
     });
 
     
+});
+
+
+Route::prefix('payment')->group(function (){
+    Route::post('pay',[PaymentController::class,'pay'])->name('payment.pay');
+    Route::post('callback',[PaymentController::class,'callback'])->name('payment.callback')  ;
 });
