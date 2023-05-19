@@ -87,7 +87,7 @@
                         <i class="zmdi zmdi-search"></i>
                     </div>
 
-                    <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="{{ is_null(Cookie::get('basket')) ? 0 : count(json_decode(Cookie::get('basket'),true)) }}">
+                    <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="{{ is_null(Cookie::get('basket')) or empty(Cookie::get('basket')) ? 0 : count(json_decode(Cookie::get('basket'),true)) }}">
                         <i class="zmdi zmdi-shopping-cart"></i>
                     </div>
                 </div>
@@ -174,7 +174,7 @@
             <ul class="header-cart-wrapitem w-full">
              
 
-                @if(!is_null(Cookie::get('basket')))
+                @if(!is_null(Cookie::get('basket'))  and !empty(Cookie::get('basket')))
                     @foreach(json_decode(Cookie::get('basket')  ,true)  as $id => $product )
 
 
@@ -208,7 +208,7 @@
 
             <div class="w-full">
                 <div class="header-cart-total w-full p-tb-40">
-                    جمع کل: {{ is_null(Cookie::get('basket')) ? 0 : array_sum(array_column(json_decode(Cookie::get('basket')  ,true),'price')) }} هزار تومان
+                    جمع کل: {{ is_null(Cookie::get('basket')) or empty(Cookie::get('basket')) ? 0 : array_sum(array_column(json_decode(Cookie::get('basket')  ,true),'price')) }} هزار تومان
                 </div>
                 
 
